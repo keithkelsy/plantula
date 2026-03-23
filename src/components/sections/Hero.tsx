@@ -86,23 +86,26 @@ const GRAIN_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 
 function ScrollIndicator() {
   return (
-    <motion.div
-      {...fadeUp(1.3)}
-      className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-    >
-      {/* Animated vertical line */}
-      <div className="relative h-[50px] w-px overflow-hidden bg-green-mid/30">
-        <motion.span
-          className="absolute inset-x-0 top-0 h-full bg-green-light"
-          animate={{ scaleY: [0, 1, 0], originY: 0 }}
-          transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.4 }}
-          style={{ transformOrigin: "top" }}
-        />
-      </div>
-      <span className="font-sans text-[0.65rem] uppercase tracking-[0.3em] text-green-light/60">
-        Scroll
-      </span>
-    </motion.div>
+    // Plain div owns the absolute positioning — no transform conflict
+    <div className="absolute bottom-12 left-0 right-0 flex justify-center">
+      <motion.div
+        {...fadeUp(1.3)}
+        className="flex flex-col items-center gap-3"
+      >
+        {/* Animated vertical line */}
+        <div className="relative h-[50px] w-px overflow-hidden bg-green-mid/30">
+          <motion.span
+            className="absolute inset-x-0 top-0 h-full bg-green-light"
+            animate={{ scaleY: [0, 1, 0] }}
+            transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.4 }}
+            style={{ transformOrigin: "top" }}
+          />
+        </div>
+        <span className="font-sans text-[0.65rem] uppercase tracking-[0.3em] text-green-light/60">
+          Scroll
+        </span>
+      </motion.div>
+    </div>
   );
 }
 

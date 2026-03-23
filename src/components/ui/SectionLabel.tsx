@@ -22,7 +22,6 @@ export default function SectionLabel({
       className={`inline-flex items-center gap-3 font-sans text-[0.7rem] font-medium uppercase tracking-[0.3em] ${textColor} ${className}`}
     >
       {centered && line}
-      {line}
       {children}
       {centered && line}
     </span>

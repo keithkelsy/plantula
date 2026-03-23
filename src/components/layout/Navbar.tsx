@@ -207,7 +207,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-10">
             {NAV_LINKS.map((link) => (
               <NavLink key={link.href} href={link.href} scrolled={scrolled}>
                 {link.label}
@@ -241,7 +241,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
-            className="md:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2"
+            className="lg:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2"
           >
             <motion.span
               animate={menuOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
@@ -277,19 +277,24 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-green-dark/97 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-dark/97 backdrop-blur-md lg:hidden"
           >
-            {/* Close button */}
-            <button
-              onClick={closeMenu}
-              aria-label="Cerrar menú"
-              className="absolute top-6 right-6 p-2 text-cream/70 hover:text-cream transition-colors"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="4" y1="4" x2="20" y2="20" />
-                <line x1="20" y1="4" x2="4" y2="20" />
-              </svg>
-            </button>
+            {/* Top bar: logo + close button — always visible */}
+            <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 py-5">
+              <span className="font-serif text-lg uppercase tracking-[0.25em] text-cream">
+                Plántula
+              </span>
+              <button
+                onClick={closeMenu}
+                aria-label="Cerrar menú"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/70 transition-colors duration-200 hover:border-cream/50 hover:text-cream"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <line x1="4" y1="4" x2="20" y2="20" />
+                  <line x1="20" y1="4" x2="4" y2="20" />
+                </svg>
+              </button>
+            </div>
 
             {/* Mobile links */}
             <nav className="flex flex-col items-center gap-8">
