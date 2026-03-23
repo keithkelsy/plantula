@@ -9,7 +9,6 @@ dist/
 # Serverless
 .serverless/
 
-Plantula-Roadmap-Claude-Code.md
 # Environment files (contain secrets)
 .env
 .env.local
