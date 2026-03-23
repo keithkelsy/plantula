@@ -9,11 +9,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        cream: "#F5F0E8",
+        "cream-light": "#FAF8F3",
+        "green-dark": "#2C3E2D",
+        "green-mid": "#4A6B4E",
+        "green-sage": "#7A9B7E",
+        "green-light": "#B8CDB9",
+        "green-pale": "#D4E2D4",
+        beige: "#E8DFD0",
+        "text-dark": "#1A2A1B",
+        "text-mid": "#3A4A3B",
+        "text-light": "#6B7B6C",
+      },
+      fontFamily: {
+        serif: ["var(--font-cormorant)", "Georgia", "serif"],
+        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
     },
   },
   plugins: [],
 };
+
 export default config;
