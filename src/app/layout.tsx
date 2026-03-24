@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cormorant, outfit } from "@/lib/fonts";
 import SplashScreen from "@/components/layout/SplashScreen";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,8 +31,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${cormorant.variable} ${outfit.variable}`}>
       <body className="antialiased">
-        <SplashScreen />
-        {children}
+        <LanguageProvider>
+          <SplashScreen />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

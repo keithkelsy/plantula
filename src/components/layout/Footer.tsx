@@ -1,30 +1,13 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 function PlantLogoMark() {
   return (
-    <svg
-      width="30"
-      height="30"
-      viewBox="0 0 28 28"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
+    <svg width="30" height="30" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <line x1="14" y1="26" x2="14" y2="10" stroke="rgba(184,205,185,0.30)" strokeWidth="1.2" strokeLinecap="round" />
-      <path
-        d="M14 18 C14 18 6 16 5 9 C9 9 14 13 14 18Z"
-        stroke="rgba(184,205,185,0.30)"
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      <path
-        d="M14 14 C14 14 22 12 23 5 C19 5 14 9 14 14Z"
-        stroke="rgba(184,205,185,0.30)"
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-        fill="none"
-      />
+      <path d="M14 18 C14 18 6 16 5 9 C9 9 14 13 14 18Z"   stroke="rgba(184,205,185,0.30)" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
+      <path d="M14 14 C14 14 22 12 23 5 C19 5 14 9 14 14Z" stroke="rgba(184,205,185,0.30)" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
     </svg>
   );
 }
@@ -56,43 +39,31 @@ function FacebookIcon() {
 }
 
 const SOCIAL_LINKS = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/plantula___/",
-    Icon: InstagramIcon,
-  },
-  {
-    label: "WhatsApp",
-    href: "#",
-    Icon: WhatsAppIcon,
-  },
-  {
-    label: "Facebook",
-    href: "#",
-    Icon: FacebookIcon,
-  },
+  { label: "Instagram", href: "https://www.instagram.com/plantula___/", Icon: InstagramIcon },
+  { label: "WhatsApp",  href: "#",                                        Icon: WhatsAppIcon  },
+  { label: "Facebook",  href: "#",                                        Icon: FacebookIcon  },
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-green-sage/[0.12] bg-green-dark">
       <div className="mx-auto max-w-[1300px] px-6 py-12 lg:px-12">
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
 
-          {/* Left — logo + copyright */}
+          {/* Logo + copyright */}
           <div>
             <div className="flex items-center justify-center gap-3 md:justify-start">
               <PlantLogoMark />
-              <span className="font-serif text-[1.1rem] uppercase tracking-[0.2em] text-cream">
-                Plántula
-              </span>
+              <span className="font-serif text-[1.1rem] uppercase tracking-[0.2em] text-cream">Plántula</span>
             </div>
             <p className="mt-2 font-sans text-[0.75rem] font-light text-green-sage">
-              © 2026 Plántula. Todos los derechos reservados.
+              {t.footer.copy}
             </p>
           </div>
 
-          {/* Right — social icons */}
+          {/* Social icons */}
           <div className="flex items-center gap-6">
             {SOCIAL_LINKS.map(({ label, href, Icon }) => (
               <a
@@ -101,12 +72,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="
-                  flex h-10 w-10 items-center justify-center rounded-full
-                  border border-green-sage/20 text-green-light
-                  transition-all duration-300
-                  hover:border-green-sage hover:bg-green-sage/10
-                "
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-green-sage/20 text-green-light transition-all duration-300 hover:border-green-sage hover:bg-green-sage/10"
               >
                 <Icon />
               </a>

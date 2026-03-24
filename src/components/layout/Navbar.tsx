@@ -2,88 +2,76 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const NAV_LINKS = [
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Proceso", href: "#proceso" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const SCROLL_THRESHOLD = 80;
-
-// Mobile menu animation variants
 const EASE = [0.4, 0, 0.2, 1] as const;
 
+// ─── Animation variants ───────────────────────────────────────────────────────
+
 const overlayVariants = {
-  hidden: { opacity: 0 },
+  hidden:  { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.4, ease: EASE } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: EASE, delay: 0.1 } },
+  exit:    { opacity: 0, transition: { duration: 0.3, ease: EASE, delay: 0.1 } },
 };
 
 const menuItemVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden:  { opacity: 0, y: 24 },
   visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
+    opacity: 1, y: 0,
     transition: { duration: 0.5, ease: EASE, delay: 0.15 + i * 0.08 },
   }),
   exit: { opacity: 0, y: -12, transition: { duration: 0.2 } },
 };
 
+// ─── Logo SVG ─────────────────────────────────────────────────────────────────
+
 function PlantLogo({ scrolled, menuOpen }: { scrolled: boolean; menuOpen: boolean }) {
   const stroke = menuOpen ? "#FAF8F3" : scrolled ? "#2C3E2D" : "#FAF8F3";
   return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 28 28"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      {/* Stem */}
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <line x1="14" y1="26" x2="14" y2="10" stroke={stroke} strokeWidth="1.2" strokeLinecap="round" />
-      {/* Left leaf */}
-      <path
-        d="M14 18 C14 18 6 16 5 9 C9 9 14 13 14 18Z"
-        stroke={stroke}
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Right leaf */}
-      <path
-        d="M14 14 C14 14 22 12 23 5 C19 5 14 9 14 14Z"
-        stroke={stroke}
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-        fill="none"
-      />
+      <path d="M14 18 C14 18 6 16 5 9 C9 9 14 13 14 18Z"    stroke={stroke} strokeWidth="1.2" strokeLinejoin="round" fill="none" />
+      <path d="M14 14 C14 14 22 12 23 5 C19 5 14 9 14 14Z"  stroke={stroke} strokeWidth="1.2" strokeLinejoin="round" fill="none" />
     </svg>
   );
 }
 
+// ─── Language toggle pill ─────────────────────────────────────────────────────
+
+function LangToggle({ scrolled, dark = false }: { scrolled: boolean; dark?: boolean }) {
+  const { lang, toggleLang } = useLanguage();
+
+  // dark = inside dark overlay; scrolled = light navbar
+  const baseText  = dark ? "text-cream/60"    : scrolled ? "text-text-light"  : "text-cream/60";
+  const activeText = dark ? "text-cream"       : scrolled ? "text-green-dark"  : "text-cream";
+  const divider   = dark ? "text-cream/20"    : scrolled ? "text-green-pale"  : "text-cream/20";
+
+  return (
+    <button
+      onClick={toggleLang}
+      aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}
+      className="flex items-center gap-1.5 font-sans text-[0.72rem] font-medium uppercase tracking-[0.18em] transition-colors duration-300"
+    >
+      <span className={lang === "es" ? activeText : baseText}>ES</span>
+      <span className={divider}>·</span>
+      <span className={lang === "en" ? activeText : baseText}>EN</span>
+    </button>
+  );
+}
+
+// ─── Desktop nav link ─────────────────────────────────────────────────────────
+
 function NavLink({
-  href,
-  children,
-  scrolled,
-  onClick,
+  href, children, scrolled, onClick,
 }: {
-  href: string;
-  children: React.ReactNode;
-  scrolled: boolean;
-  onClick?: () => void;
+  href: string; children: React.ReactNode; scrolled: boolean; onClick?: () => void;
 }) {
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
       onClick?.();
-      const id = href.replace("#", "");
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      document.getElementById(href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
     },
     [href, onClick],
   );
@@ -96,12 +84,10 @@ function NavLink({
         relative font-sans text-[0.82rem] font-normal uppercase tracking-[0.15em]
         transition-colors duration-300 py-1
         after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0
-        after:transition-[width] after:duration-300 after:ease-in-out
-        hover:after:w-full
-        ${
-          scrolled
-            ? "text-text-mid after:bg-green-dark hover:text-green-dark"
-            : "text-cream/85 after:bg-cream hover:text-cream"
+        after:transition-[width] after:duration-300 after:ease-in-out hover:after:w-full
+        ${scrolled
+          ? "text-text-mid after:bg-green-dark hover:text-green-dark"
+          : "text-cream/85 after:bg-cream hover:text-cream"
         }
       `}
     >
@@ -110,25 +96,19 @@ function NavLink({
   );
 }
 
+// ─── Mobile nav link ──────────────────────────────────────────────────────────
+
 function MobileNavLink({
-  href,
-  children,
-  index,
-  onClose,
+  href, children, index, onClose,
 }: {
-  href: string;
-  children: React.ReactNode;
-  index: number;
-  onClose: () => void;
+  href: string; children: React.ReactNode; index: number; onClose: () => void;
 }) {
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
       onClose();
       setTimeout(() => {
-        const id = href.replace("#", "");
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        document.getElementById(href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
       }, 350);
     },
     [href, onClose],
@@ -150,18 +130,22 @@ function MobileNavLink({
   );
 }
 
+// ─── Component ────────────────────────────────────────────────────────────────
+
 export default function Navbar() {
-  // Start as false — will be set correctly on client via useEffect
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { t, lang } = useLanguage();
+  const [scrolled, setScrolled]   = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
-    // Set immediately on mount to catch page refreshes mid-scroll
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close menu when language changes (links text updates)
+  useEffect(() => { setMenuOpen(false); }, [lang]);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -176,10 +160,9 @@ export default function Navbar() {
       <header
         className={`
           fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-          ${
-            scrolled
-              ? "bg-cream-light/95 backdrop-blur-xl shadow-[0_1px_30px_rgba(44,62,45,0.06)] py-4"
-              : "bg-transparent py-6"
+          ${scrolled
+            ? "bg-cream-light/95 backdrop-blur-xl shadow-[0_1px_30px_rgba(44,62,45,0.06)] py-4"
+            : "bg-transparent py-6"
           }
         `}
       >
@@ -188,51 +171,42 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="flex items-center gap-3 shrink-0"
             aria-label="Plántula — ir al inicio"
           >
             <PlantLogo scrolled={scrolled} menuOpen={menuOpen} />
-            <span
-              className={`
-                font-serif text-lg uppercase tracking-[0.25em] transition-colors duration-300
-                ${scrolled ? "text-green-dark" : "text-cream"}
-              `}
-            >
+            <span className={`font-serif text-lg uppercase tracking-[0.25em] transition-colors duration-300 ${scrolled ? "text-green-dark" : "text-cream"}`}>
               Plántula
             </span>
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-10">
-            {NAV_LINKS.map((link) => (
+          <div className="hidden lg:flex items-center gap-8">
+            {t.nav.links.map((link) => (
               <NavLink key={link.href} href={link.href} scrolled={scrolled}>
                 {link.label}
               </NavLink>
             ))}
 
+            {/* Language toggle */}
+            <LangToggle scrolled={scrolled} />
+
             {/* Contact CTA */}
             <a
               href="#contacto"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
-              }}
+              onClick={(e) => { e.preventDefault(); document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" }); }}
               className={`
-                ml-4 inline-flex items-center px-6 py-2.5 font-sans text-[0.78rem]
+                ml-2 inline-flex items-center px-6 py-2.5 font-sans text-[0.78rem]
                 font-medium uppercase tracking-[0.15em] border transition-all duration-300
                 hover:-translate-y-px
-                ${
-                  scrolled
-                    ? "border-green-dark text-green-dark hover:bg-green-dark hover:text-cream"
-                    : "border-cream/70 text-cream hover:bg-cream/10"
+                ${scrolled
+                  ? "border-green-dark text-green-dark hover:bg-green-dark hover:text-cream"
+                  : "border-cream/70 text-cream hover:bg-cream/10"
                 }
               `}
             >
-              Contacto
+              {t.nav.contact}
             </a>
           </div>
 
@@ -243,27 +217,9 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             className="lg:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2"
           >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3, ease: EASE }}
-              className={`block h-[1.5px] w-7 origin-center transition-colors duration-300 ${
-                menuOpen || !scrolled ? "bg-cream" : "bg-green-dark"
-              }`}
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.2 }}
-              className={`block h-[1.5px] w-7 transition-colors duration-300 ${
-                menuOpen || !scrolled ? "bg-cream" : "bg-green-dark"
-              }`}
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3, ease: EASE }}
-              className={`block h-[1.5px] w-7 origin-center transition-colors duration-300 ${
-                menuOpen || !scrolled ? "bg-cream" : "bg-green-dark"
-              }`}
-            />
+            <motion.span animate={menuOpen ? { rotate: 45,  y:  6.5 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3, ease: EASE }} className={`block h-[1.5px] w-7 origin-center transition-colors duration-300 ${menuOpen || !scrolled ? "bg-cream" : "bg-green-dark"}`} />
+            <motion.span animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }} transition={{ duration: 0.2 }} className={`block h-[1.5px] w-7 transition-colors duration-300 ${menuOpen || !scrolled ? "bg-cream" : "bg-green-dark"}`} />
+            <motion.span animate={menuOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3, ease: EASE }} className={`block h-[1.5px] w-7 origin-center transition-colors duration-300 ${menuOpen || !scrolled ? "bg-cream" : "bg-green-dark"}`} />
           </button>
         </nav>
       </header>
@@ -279,11 +235,9 @@ export default function Navbar() {
             exit="exit"
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-dark/97 backdrop-blur-md lg:hidden"
           >
-            {/* Top bar: logo + close button — always visible */}
+            {/* Top bar: logo + close button */}
             <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 py-5">
-              <span className="font-serif text-lg uppercase tracking-[0.25em] text-cream">
-                Plántula
-              </span>
+              <span className="font-serif text-lg uppercase tracking-[0.25em] text-cream">Plántula</span>
               <button
                 onClick={closeMenu}
                 aria-label="Cerrar menú"
@@ -296,9 +250,9 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile links */}
+            {/* Links */}
             <nav className="flex flex-col items-center gap-8">
-              {NAV_LINKS.map((link, i) => (
+              {t.nav.links.map((link, i) => (
                 <MobileNavLink key={link.href} href={link.href} index={i} onClose={closeMenu}>
                   {link.label}
                 </MobileNavLink>
@@ -306,7 +260,7 @@ export default function Navbar() {
 
               <motion.a
                 href="#contacto"
-                custom={NAV_LINKS.length}
+                custom={t.nav.links.length}
                 variants={menuItemVariants}
                 initial="hidden"
                 animate="visible"
@@ -314,25 +268,26 @@ export default function Navbar() {
                 onClick={(e) => {
                   e.preventDefault();
                   closeMenu();
-                  setTimeout(() => {
-                    document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
-                  }, 350);
+                  setTimeout(() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" }), 350);
                 }}
                 className="mt-4 inline-flex items-center border border-cream/30 px-8 py-3 font-sans text-xs uppercase tracking-[0.2em] text-cream/80 hover:text-cream hover:border-cream/60 transition-colors duration-200"
               >
-                Contacto
+                {t.nav.contact}
               </motion.a>
             </nav>
 
-            {/* Decorative bottom label */}
-            <motion.p
+            {/* Language toggle + bottom label */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.5 } }}
               exit={{ opacity: 0 }}
-              className="absolute bottom-8 font-sans text-[0.65rem] uppercase tracking-[0.3em] text-green-sage/60"
+              className="absolute bottom-8 flex flex-col items-center gap-4"
             >
-              Estudio botánico · Colombia
-            </motion.p>
+              <LangToggle scrolled={false} dark />
+              <p className="font-sans text-[0.65rem] uppercase tracking-[0.3em] text-green-sage/60">
+                {t.nav.tagline}
+              </p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

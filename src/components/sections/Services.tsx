@@ -1,11 +1,14 @@
 "use client";
 
-import { SERVICES } from "@/lib/constants";
 import SectionLabel from "@/components/ui/SectionLabel";
 import SectionTitle from "@/components/ui/SectionTitle";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Services() {
+  const { t } = useLanguage();
+  const s = t.services;
+
   return (
     <section id="servicios" className="bg-cream-light">
       <div className="mx-auto max-w-[1300px] px-6 py-32 lg:px-12">
@@ -14,44 +17,39 @@ export default function Services() {
         <div className="mb-20 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <RevealOnScroll>
-              <SectionLabel>Servicios</SectionLabel>
+              <SectionLabel>{s.label}</SectionLabel>
             </RevealOnScroll>
             <RevealOnScroll delay={0.1}>
               <SectionTitle className="mt-5">
-                Lo que <em>hacemos</em>
+                {s.title} <em>{s.titleEm}</em>
               </SectionTitle>
             </RevealOnScroll>
           </div>
           <RevealOnScroll delay={0.2} direction="right">
             <p className="max-w-[360px] font-sans text-[0.9rem] font-light leading-relaxed text-text-light lg:text-right">
-              Cada proyecto es único. Adaptamos nuestro proceso a las condiciones
-              del espacio, el entorno y la visión de cada cliente.
+              {s.sub}
             </p>
           </RevealOnScroll>
         </div>
 
         {/* Service list */}
         <div className="divide-y divide-green-pale">
-          {SERVICES.map((service, i) => (
+          {s.items.map((service, i) => (
             <RevealOnScroll key={service.id} delay={i * 0.1} direction="up">
               <div className="group grid cursor-default py-10 transition-colors duration-500 hover:bg-green-pale/20 lg:grid-cols-[80px_1fr_1fr_auto] lg:items-center lg:gap-16 lg:px-6">
 
-                {/* Number */}
                 <span className="mb-4 font-serif text-[2.2rem] font-light text-green-pale transition-colors duration-500 group-hover:text-green-light lg:mb-0">
                   {service.number}
                 </span>
 
-                {/* Title */}
                 <h3 className="mb-3 font-serif text-[1.4rem] font-light text-green-dark lg:mb-0">
                   {service.title}
                 </h3>
 
-                {/* Description */}
                 <p className="font-sans text-[0.88rem] font-light leading-relaxed text-text-light">
                   {service.description}
                 </p>
 
-                {/* Tags */}
                 <div className="mt-4 flex flex-wrap gap-2 lg:mt-0 lg:justify-end">
                   {service.tags.map((tag) => (
                     <span
