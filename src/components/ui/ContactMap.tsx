@@ -39,6 +39,7 @@ export default function ContactMap({ tooltip }: ContactMapProps) {
         theme="dark"
         interactive={true}
         scrollZoom={false}
+        projection={{ type: "mercator" }}
         className="h-full w-full"
       >
         <MapMarker longitude={MEDELLIN[0]} latitude={MEDELLIN[1]}>
