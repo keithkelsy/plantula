@@ -1,8 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Dynamic import — maplibre-gl is client-only and large
+const ContactMap = dynamic(() => import("@/components/ui/ContactMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full animate-pulse bg-green-mid/20" />
+  ),
+});
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -22,7 +31,8 @@ export default function Contact() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto max-w-[700px] px-6 py-32 text-center lg:px-12">
+      {/* ── Top: text + form + info ── */}
+      <div className="relative z-10 mx-auto max-w-[700px] px-6 pt-32 pb-20 text-center lg:px-12">
 
         <RevealOnScroll>
           <SectionLabel centered light>{c.label}</SectionLabel>
@@ -75,8 +85,16 @@ export default function Contact() {
             ))}
           </div>
         </RevealOnScroll>
-
       </div>
+
+      {/* ── Bottom: map ── */}
+      <RevealOnScroll delay={0.2}>
+        <div className="relative z-10 px-6 pb-16 lg:px-12">
+          <div className="h-[320px] w-full overflow-hidden sm:h-[400px] rounded-lg">
+            <ContactMap tooltip={c.mapTooltip} />
+          </div>
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }

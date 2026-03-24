@@ -15,6 +15,12 @@
   body {
     @apply bg-cream-light text-text-mid font-sans;
   }
+  .maplibregl-popup-content {
+    @apply bg-transparent! shadow-none! p-0! rounded-none!;
+  }
+  .maplibregl-popup-tip {
+    @apply hidden!;
+  }
 }
 
 @layer utilities {

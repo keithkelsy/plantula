@@ -49,11 +49,16 @@ export default function Instagram() {
 
         <RevealOnScroll delay={0.2}>
           <div className="mx-auto mt-12 max-w-[1400px]">
+            <a
+              href={IG_URL}
+              target="_blank"
+            >
             <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-6">
               {ig.posts.map((post) => (
                 <PostItem key={post.src} {...post} />
               ))}
             </div>
+            </a>
           </div>
         </RevealOnScroll>
 

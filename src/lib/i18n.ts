@@ -151,6 +151,7 @@ const translations = {
         { label: "Email",     value: "hola@plantula.co",  href: "mailto:hola@plantula.co" },
         { label: "Ubicación", value: "Medellín, Colombia", href: undefined                },
       ],
+      mapTooltip: "Estamos en Medellín, Colombia",
     },
 
     // ── Footer ────────────────────────────────────────────────────────────────
@@ -300,6 +301,7 @@ const translations = {
         { label: "Email",    value: "hola@plantula.co",   href: "mailto:hola@plantula.co" },
         { label: "Location", value: "Medellín, Colombia",  href: undefined                },
       ],
+      mapTooltip: "We're in Medellín, Colombia",
     },
 
     footer: {
