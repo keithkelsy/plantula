@@ -58,9 +58,18 @@ export default function Footer() {
               <PlantLogoMark />
               <span className="font-serif text-[1.1rem] uppercase tracking-[0.2em] text-cream">Plántula</span>
             </div>
-            <p className="mt-2 font-sans text-[0.75rem] font-light text-green-sage">
-              {t.footer.copy}
-            </p>
+              <p className="mt-2 font-sans text-[0.75rem] font-light text-green-sage">
+                {t.footer.copyStart}{" "}
+                <a
+                  href={t.footer.authorUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-green-light"
+                >
+                  {t.footer.author}
+                </a>
+                . {t.footer.copyEnd}
+              </p>
           </div>
 
           {/* Social icons */}

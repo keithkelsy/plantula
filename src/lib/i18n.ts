@@ -90,10 +90,10 @@ const translations = {
       title:   "Espacios que",
       titleEm: "cobran vida",
       projects: [
-        { id: "jardin-terraza", title: "Jardín Terraza El Poblado",  category: "Paisajismo Residencial",  image: "/images/portfolio/plantula2.jpg",  placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
-        { id: "muro-verde",     title: "Muro Verde Corporativo",     category: "Cuadro Vivo",             image: "/images/portfolio/plantula1.jpg",  placeholder: "linear-gradient(135deg,#7A9B7E 0%,#4A6B4E 100%)" },
+        { id: "jardin-terraza", title: "Jardín Terraza El Poblado",  category: "Paisajismo Residencial",  image: "/images/portfolio/plantula1.jpg",  placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
+        { id: "muro-verde",     title: "Muro Verde Corporativo",     category: "Cuadro Vivo",             image: "/images/portfolio/plantula2.jpg",  placeholder: "linear-gradient(135deg,#7A9B7E 0%,#4A6B4E 100%)" },
         { id: "loft-laureles",  title: "Loft Laureles",              category: "Interiorismo Botánico",   image: "/images/portfolio/plantula3.jpg",  placeholder: "linear-gradient(135deg,#B8CDB9 0%,#7A9B7E 100%)" },
-        { id: "casa-campo",     title: "Proyecto Casa Campo",        category: "Diseño de Jardines",      image: "/images/portfolio/casa-campo.jpg", placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
+        { id: "casa-campo",     title: "Proyecto Casa Campo",        category: "Diseño de Jardines",      image: "/images/portfolio/plantula4.jpg", placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
       ],
     },
 
@@ -128,12 +128,12 @@ const translations = {
       title:  "Síguenos en",
       handle: "@plantula___",
       posts: [
-        { src: "/images/portfolio/plantula1.jpg",   alt: "Jardín terraza en El Poblado",              placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
+        { src: "/images/portfolio/plantula1.jpg",   alt: "Jardín terraza en El Poblado",               placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
         { src: "/images/portfolio/plantula2.jpg",   alt: "Detalle de muro verde corporativo",          placeholder: "linear-gradient(135deg,#7A9B7E 0%,#4A6B4E 100%)" },
         { src: "/images/portfolio/plantula3.jpg",   alt: "Especie nativa en proceso de instalación",   placeholder: "linear-gradient(135deg,#B8CDB9 0%,#7A9B7E 100%)" },
-        { src: "/images/instagram/post-4.jpg",      alt: "Loft con composición botánica interior",     placeholder: "linear-gradient(135deg,#4A6B4E 0%,#3A5A3E 100%)" },
-        { src: "/images/instagram/post-5.jpg",      alt: "Jardín de casa de campo",                    placeholder: "linear-gradient(135deg,#2C3E2D 0%,#4A6B4E 100%)" },
-        { src: "/images/instagram/post-6.jpg",      alt: "Detalle botánico close-up",                  placeholder: "linear-gradient(135deg,#7A9B7E 0%,#B8CDB9 100%)" },
+        { src: "/images/portfolio/plantula4.jpg",   alt: "Loft con composición botánica interior",     placeholder: "linear-gradient(135deg,#4A6B4E 0%,#3A5A3E 100%)" },
+        { src: "/images/portfolio/plantula5.jpg",   alt: "Jardín de casa de campo",                    placeholder: "linear-gradient(135deg,#2C3E2D 0%,#4A6B4E 100%)" },
+        { src: "/images/portfolio/plantula6.jpg",   alt: "Detalle botánico close-up",                  placeholder: "linear-gradient(135deg,#7A9B7E 0%,#B8CDB9 100%)" },
       ],
     },
 
@@ -155,7 +155,10 @@ const translations = {
 
     // ── Footer ────────────────────────────────────────────────────────────────
     footer: {
-      copy: "© 2026 Plántula. Todos los derechos reservados.",
+      copyStart: "© 2026 by",
+      author: "KeithKelsy",
+      copyEnd: "Todos los derechos reservados.",
+      authorUrl: "https://www.linkedin.com/in/keithkelsy/"
     },
   },
 
@@ -240,10 +243,10 @@ const translations = {
       title:   "Spaces that",
       titleEm: "come alive",
       projects: [
-        { id: "jardin-terraza", title: "El Poblado Rooftop Garden",    category: "Residential Landscaping", image: "/images/portfolio/plantula2.jpg",  placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
-        { id: "muro-verde",     title: "Corporate Green Wall",         category: "Living Picture",           image: "/images/portfolio/plantula1.jpg",  placeholder: "linear-gradient(135deg,#7A9B7E 0%,#4A6B4E 100%)" },
+        { id: "jardin-terraza", title: "El Poblado Rooftop Garden",    category: "Residential Landscaping", image: "/images/portfolio/plantula1.jpg",  placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
+        { id: "muro-verde",     title: "Corporate Green Wall",         category: "Living Picture",           image: "/images/portfolio/plantula2.jpg",  placeholder: "linear-gradient(135deg,#7A9B7E 0%,#4A6B4E 100%)" },
         { id: "loft-laureles",  title: "Laureles Loft",                category: "Botanical Interiors",      image: "/images/portfolio/plantula3.jpg",  placeholder: "linear-gradient(135deg,#B8CDB9 0%,#7A9B7E 100%)" },
-        { id: "casa-campo",     title: "Country House Project",        category: "Garden Design",            image: "/images/portfolio/casa-campo.jpg", placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
+        { id: "casa-campo",     title: "Country House Project",        category: "Garden Design",            image: "/images/portfolio/plantula4.jpg", placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
       ],
     },
 
@@ -278,9 +281,9 @@ const translations = {
         { src: "/images/portfolio/plantula1.jpg",   alt: "Rooftop garden in El Poblado",       placeholder: "linear-gradient(135deg,#4A6B4E 0%,#2C3E2D 100%)" },
         { src: "/images/portfolio/plantula2.jpg",   alt: "Detail of corporate green wall",     placeholder: "linear-gradient(135deg,#7A9B7E 0%,#4A6B4E 100%)" },
         { src: "/images/portfolio/plantula3.jpg",   alt: "Native species being installed",     placeholder: "linear-gradient(135deg,#B8CDB9 0%,#7A9B7E 100%)" },
-        { src: "/images/instagram/post-4.jpg",      alt: "Loft with botanical composition",    placeholder: "linear-gradient(135deg,#4A6B4E 0%,#3A5A3E 100%)" },
-        { src: "/images/instagram/post-5.jpg",      alt: "Country house garden",               placeholder: "linear-gradient(135deg,#2C3E2D 0%,#4A6B4E 100%)" },
-        { src: "/images/instagram/post-6.jpg",      alt: "Botanical detail close-up",          placeholder: "linear-gradient(135deg,#7A9B7E 0%,#B8CDB9 100%)" },
+        { src: "/images/portfolio/plantula4.jpg",   alt: "Loft with botanical composition",    placeholder: "linear-gradient(135deg,#4A6B4E 0%,#3A5A3E 100%)" },
+        { src: "/images/portfolio/plantula5.jpg",   alt: "Country house garden",               placeholder: "linear-gradient(135deg,#2C3E2D 0%,#4A6B4E 100%)" },
+        { src: "/images/portfolio/plantula6.jpg",   alt: "Botanical detail close-up",          placeholder: "linear-gradient(135deg,#7A9B7E 0%,#B8CDB9 100%)" },
       ],
     },
 
@@ -300,7 +303,10 @@ const translations = {
     },
 
     footer: {
-      copy: "© 2026 Plántula. All rights reserved.",
+      copyStart: "© 2026 by",
+      author: "KeithKelsy",
+      copyEnd: "All rights reserved.",
+      authorUrl: "https://www.linkedin.com/in/keithkelsy/"
     },
   },
 } as const;

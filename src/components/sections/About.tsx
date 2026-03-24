@@ -80,12 +80,12 @@ export default function About() {
 
           {/* Right column */}
           <RevealOnScroll direction="right" delay={0.1}>
-            <div className="relative h-[480px] lg:h-[600px]">
+            <div className="relative h-[480px] lg:h-[600px] ">
 
               {/* Main image */}
-              <div className="absolute right-0 top-0 h-[75%] w-[85%] overflow-hidden">
+              <div className="absolute right-0 top-0 h-[75%] w-[85%] overflow-hidden rounded-xl">
                 <Image
-                  src="/images/about/equipo.jpg"
+                  src="/images/portfolio/plantula6.jpg"
                   alt={a.imgAlt}
                   fill
                   sizes="(max-width: 1024px) 85vw, 45vw"
@@ -96,7 +96,7 @@ export default function About() {
               </div>
 
               {/* Accent block */}
-              <div className="absolute bottom-0 left-0 flex h-[45%] w-[50%] items-center justify-center bg-beige shadow-[0_20px_60px_rgba(44,62,45,0.08)]">
+              <div className="absolute bottom-0 left-0 flex h-[45%] w-[50%] items-center justify-center bg-beige shadow-[0_20px_60px_rgba(44,62,45,0.08)] rounded-xl">
                 <div className="opacity-30"><PlantLogoMark size={96} /></div>
               </div>
 

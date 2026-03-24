@@ -48,7 +48,7 @@ export const PROJECTS = [
     id: "jardin-terraza",
     title: "Jardín Terraza El Poblado",
     category: "Paisajismo Residencial",
-    image: "/images/portfolio/plantula2.jpg",
+    image: "/images/portfolio/plantula1.jpg",
     // Placeholder gradient shown when image is absent
     placeholder: "linear-gradient(135deg, #4A6B4E 0%, #2C3E2D 100%)",
   },
@@ -56,7 +56,7 @@ export const PROJECTS = [
     id: "muro-verde",
     title: "Muro Verde Corporativo",
     category: "Cuadro Vivo",
-    image: "/images/portfolio/plantula1.jpg",
+    image: "/images/portfolio/plantula2.jpg",
     placeholder: "linear-gradient(135deg, #7A9B7E 0%, #4A6B4E 100%)",
   },
   {
@@ -70,7 +70,7 @@ export const PROJECTS = [
     id: "casa-campo",
     title: "Proyecto Casa Campo",
     category: "Diseño de Jardines",
-    image: "/images/portfolio/casa-campo.jpg",
+    image: "/images/portfolio/plantula4.jpg",
     placeholder: "linear-gradient(135deg, #4A6B4E 0%, #2C3E2D 100%)",
   },
 ];
@@ -133,7 +133,7 @@ export const INSTAGRAM_POSTS = [
   { id: "1", image: "/images/portfolio/plantula1.jpg", alt: "Jardín en proceso" },
   { id: "2", image: "/images/portfolio/plantula2.jpg", alt: "Terraza diseñada" },
   { id: "3", image: "/images/portfolio/plantula3.jpg", alt: "Planta nativa" },
-  { id: "4", image: "/instagram/post-4.jpg", alt: "Muro verde" },
-  { id: "5", image: "/instagram/post-5.jpg", alt: "Detalle botánico" },
-  { id: "6", image: "/instagram/post-6.jpg", alt: "Proyecto terminado" },
+  { id: "4", image: "/images/portfolio/plantula4.jpg", alt: "Muro verde" },
+  { id: "5", image: "/images/portfolio/plantula5.jpg", alt: "Detalle botánico" },
+  { id: "6", image: "/images/portfolio/plantula6.jpg", alt: "Proyecto terminado" },
 ];
