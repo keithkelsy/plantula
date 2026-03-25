@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
 import { useLanguage } from "@/context/LanguageContext";
+import HeroBackground from "@/components/sections/HeroBackground";
 
 // ─── Animation helpers ────────────────────────────────────────────────────────
 
@@ -90,26 +91,17 @@ export default function Hero() {
       id="inicio"
       className="relative min-h-screen overflow-hidden bg-green-dark flex items-center justify-center"
     >
-      {/* Radial gradient depth layers */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 60% 50% at 20% 80%, rgba(74,107,78,0.40) 0%, transparent 100%),
-            radial-gradient(ellipse 55% 45% at 80% 20%, rgba(61,94,63,0.30) 0%, transparent 100%)
-          `,
-        }}
-        aria-hidden="true"
-      />
+      {/* ── Canvas animated background ── */}
+      <HeroBackground />
 
-      {/* Grain / noise layer */}
+      {/* ── Grain / noise layer ── */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        className="absolute inset-0 pointer-events-none opacity-[0.032]"
         style={{ backgroundImage: `url("${GRAIN_SVG}")`, backgroundRepeat: "repeat", backgroundSize: "300px 300px" }}
         aria-hidden="true"
       />
 
-      {/* Botanical line art */}
+      {/* ── Botanical line art ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <BotanicalTopRight />
         <BotanicalBottomLeft />
